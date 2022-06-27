@@ -38,3 +38,36 @@ list_sum = sum(integer_list)
 
 # extending the values of a list (adding)
 integer_list.extend([1,2,3,4,5,6,7,8,9])
+
+
+
+''''But has another way, using the append 
+but append accept only one argument.
+integer_list.append(987)'''
+
+''' Changing elements insid of the list 
+integer_list[0] = 987 # changing the first element to 987
+integer_list[-1] = 987 # changing the last ultimo element to 987'''
+
+# maybe you can change several elements at the same time
+'''integer_list[0:5] = [987, 987, 987,987, 987, 987,987, 987] 
+print(integer_list)
+If you put the same amount os element before e after will replace all 
+rigth, if you put less element in the positions than in the extend 
+new to be considered will add all as an extend from the element
+the more and if you put less elements in more positions this will result in an error
+'''
+
+#using Insert() you can enter data by entering positions and what 
+# will contain in this new position, without being adding at the end and not replacing
+# any value
+
+moto = ['honda', 'yamaha','suzuki']
+print(moto)
+moto.insert(2,'ducati')
+print(moto)
+
+# removing elements from the list using del permanently
+# in any position of litapy
+del moto[2]
+print(moto)
