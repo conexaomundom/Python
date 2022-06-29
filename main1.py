@@ -34,8 +34,8 @@ print(b.__dict__)'''
 ''' access modifers
 methods and attribuers
 public - they can be access inside and outside of the class
-protected - they can be access only inside of the class or by class's children
-private - it is only avaliable inside of the class
+_ protected/Protected - they can be access only inside of the class or by class's children
+__ private - it is only avaliable inside of the class (__CLASSNAME__ATTRIBUTENAME)
 '''
 
 class DataBase:
