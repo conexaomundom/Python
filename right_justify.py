@@ -8,11 +8,12 @@ def right_justify(word, n):
 
 #right_justify('morty', 70)
 
-def do_twice(f):
-    f()
-    f()
+def do_twice(n, f):
+    for i in range(n):
+        f()
+
 
 def print_spam():
     print('spam')
 
-do_twice(print_spam)
+do_twice(2,print_spam)
