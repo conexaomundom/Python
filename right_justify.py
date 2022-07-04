@@ -38,4 +38,29 @@ def do_four(func, argument):
     do_twice(func, argument)
 
 
-do_four(print,'spam')
+# do_four(print,'spam')
+
+def grade():
+    ''' Prints grades
+
+    squares are how many squares the user wants
+    '''
+    plus = '+ '
+    menus = '- '
+    other = '|'
+
+    print(plus + menus * 4 + plus + menus * 4 + plus)
+    print(other + ' ' * 9 + other + ' ' * 9 + other)
+    print(other + ' ' * 9 + other + ' ' * 9 + other)
+    print(other + ' ' * 9 + other + ' ' * 9 + other)
+    print(other + ' ' * 9 + other + ' ' * 9 + other)
+    print(plus + menus * 4 + plus + menus * 4 + plus)
+
+ #   print(plus + menus * 4 + plus + menus * 4 + plus)
+    print(other + ' ' * 9 + other + ' ' * 9 + other)
+    print(other + ' ' * 9 + other + ' ' * 9 + other)
+    print(other + ' ' * 9 + other + ' ' * 9 + other)
+    print(other + ' ' * 9 + other + ' ' * 9 + other)
+    print(plus + menus * 4 + plus + menus * 4 + plus)
+
+grade()
