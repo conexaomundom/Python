@@ -1,4 +1,5 @@
 import turtle
+import math
 
 bob = turtle.Turtle()
 '''
@@ -30,4 +31,15 @@ def polygon(t,n, length):
         t.lt(angle)
 
 
-polygon(bob,7,70)
+# polygon(bob,7,70)
+
+'''generalizing and clearing the code'''
+
+def circle(t, r):
+    '''Drawing a circle using turtle'''
+    circunference = 2 * math.pi * r
+    n = int(circunference / 3) + 1
+    length = circunference / n
+    polygon(t, n, length)
+
+circle(bob,70)
