@@ -42,4 +42,14 @@ def circle(t, r):
     length = circunference / n
     polygon(t, n, length)
 
-circle(bob,70)
+# circle(bob,70)
+
+
+def circle(t, r, angle):
+    '''Drawing a arc using turtle'''
+    arc_length = 2 * math.pi * r * angle / 360
+    n = int(arc_length / 3) + 1
+    step_length = arc_length / n
+    
+    polygon(t, n, length)
+
