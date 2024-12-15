@@ -15,18 +15,30 @@ class DataSet():
         self.fake = Faker()
         self.database = []
         
+    def generate_records(self, record_id):
+        record = {
+            "ID": record_id,
+            "age": random.randint(18,70),
+            "city": self.fake.city(),
+            "salary": random(random.uniform(20000,120000), 2),
+            "gender":random.choice(["Male","Female"]),
+            "online_shopping": random.choice([True,False])
+        }  
         
+        return record
 
-''' def add_customer(self):
-        for i in list(range(1, self.ds_size+1)):
-            id_customers_add = "ID_" + str(i)
-            print(id_customers_add)
-        
-        
-    
-    def show_dataset(self):
-        print(self.dataset)
-'''
+    def generate_dataset(self):
+        for i in range(1, self.ds_size + 1):
+            self.database.append(self.generate_records(i))
+            
+    def get_dataset(self):
+        return self.database()
 
-A = DataSet()
-A.add_customer()
+
+if __name__ == "__main__":
+    n = 10
+    generator = DataSet(n)
+    generator.generate_records()
+    generator.generate_dataset()
+    for record in generator.get_dataset():
+        print(record)
