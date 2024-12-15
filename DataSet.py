@@ -1,4 +1,4 @@
-import pandas as pd
+# import pandas as pd
 import random
 from faker import Faker
 
@@ -9,9 +9,9 @@ from faker import Faker
 # n: number of records
 
 class DataSet():
-    def __init__(self,n):
+    def __init__(self,ds_size):
         #Initiazlizate an empty Data frame to enter to be feed with customer data
-        self.ds_size = n
+        self.ds_size = ds_size
         self.fake = Faker()
         self.database = []
         
@@ -20,7 +20,7 @@ class DataSet():
             "ID": record_id,
             "age": random.randint(18,70),
             "city": self.fake.city(),
-            "salary": random(random.uniform(20000,120000), 2),
+            "salary": round(random.uniform(20000,120000), 2),
             "gender":random.choice(["Male","Female"]),
             "online_shopping": random.choice([True,False])
         }  
@@ -32,13 +32,13 @@ class DataSet():
             self.database.append(self.generate_records(i))
             
     def get_dataset(self):
-        return self.database()
+        return self.database
 
 
+''' # example how to use
 if __name__ == "__main__":
-    n = 10
-    generator = DataSet(n)
-    generator.generate_records()
+    ds_size = 10
+    generator = DataSet(ds_size)
     generator.generate_dataset()
     for record in generator.get_dataset():
-        print(record)
+        print(record)'''
