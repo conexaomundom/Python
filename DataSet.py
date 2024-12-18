@@ -8,7 +8,7 @@ from faker import Faker
 # Salary: Average Salary, Online Shopping: 1:Yes or 0:No
 # n: number of records
 
-class DataSet():
+class Data():
     def __init__(self,ds_size):
         #Initiazlizate an empty Data frame to enter to be feed with customer data
         self.ds_size = ds_size
@@ -35,10 +35,11 @@ class DataSet():
         return self.database
 
 
-''' # example how to use
+'''# example how to use
 if __name__ == "__main__":
-    ds_size = 10
+    ds_size = 10000
     generator = DataSet(ds_size)
+    random.seed(10)
     generator.generate_dataset()
     for record in generator.get_dataset():
         print(record)'''
