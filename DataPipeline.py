@@ -3,11 +3,14 @@ import pandas as pd
 import random
 from DataSet import Data
 
+
 class DataPipeline:
     
     def __init__(self):
         #Initiazlizate an empty Data frame to enter to be feed with customer data
-        self.analysis_results = None
+        self.analysis_results_summary = None
+        self.analysis_results_head = pd.DataFrame()
+        #self.analysis_results_summary = None
         self.model_results = None
         self.database = None
         self.ds_size = 10000
@@ -24,7 +27,8 @@ class DataPipeline:
         if self.database == None:
             raise ValueError("data has not been generated yet.")
         data = pd.DataFrame(self.database)
-        self.analysis_results = data.describe(include = 'all')
+        self.analysis_results_summary = data.describe(include = 'all')
+        self.analysis_results_head = data.head()
         print("Exploratory Analysis completed.")
         
     def model_run(self):
@@ -39,7 +43,9 @@ class DataPipeline:
         with open(filename, "w") as f:
             f.write("Results Report\n")
             f.write("\nExploratory Analysis:\n")
-            f.write(self.analysis_results.to_string())
+            f.write(self.analysis_results_summary.to_string())
+            f.write("\n")
+            f.write(self.analysis_results_head.to_string())
             f.write("\n\nModel Results:\n")
             f.write("Not done yet.\n")
             #f.write(self.model_results.to_string())
