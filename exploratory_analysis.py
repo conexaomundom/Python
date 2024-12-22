@@ -1,7 +1,10 @@
 import pandas as pd
 import random
 from DataSet import Data
+import matplotlib as plt
+import matplotlib.pyplot as plt1
 import plotly.express as px
+
 
 class exploratory_analysis:
     
@@ -30,16 +33,25 @@ class exploratory_analysis:
         
     def analysis_histogram(self):
         data = pd.DataFrame(self.database)
-        fig_hist = px.histogram(data,x = "age")
-        fig_hist.show()
+        data.hist(bins=50, figsize=(20,15))
+        plt1.savefig('hist.png')
+        
+    def corelation_matrix(self):
+        if self.database == None:
+            raise ValueError("data has not been generated yet.")
+        data = pd.DataFrame(self.database)
+        corr_matrix = data[["age", "salary","gender","online_shopping"]].corr()
+        
+        return corr_matrix
 
-    # Main function to execute the pipeline
+    # Main function to execute the class
 def main():
 
     analysis = exploratory_analysis()    
     analysis.dataset()
     analysis.exploratory_analysis()
     analysis.analysis_histogram()
+    analysis.corelation_matrix()
 
 if __name__ == "__main__":
     main()
