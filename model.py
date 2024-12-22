@@ -5,7 +5,7 @@ import numpy as np
 
 class run_models:
     
-    def __init__(self, data, test_ratio):
+    def __init__(self, data = None, test_ratio = 0.2):
         #Initiazlizate an empty Data frame to enter to be feed with customer data
         self.database = data
         self.ds_size = 10000
@@ -21,8 +21,8 @@ class run_models:
 
     def split_train_test(self):
 
-        #if self.database == None:
-        #    raise ValueError("data has not been generated yet.")
+        if self.database == None:
+            raise ValueError("data has not been generated yet.")
         
         data = pd.DataFrame(self.database)
         
