@@ -1,8 +1,15 @@
 import pandas as pd
-#from faker import Faker
+from datetime import date
 import random
 from DataSet import Data
 from model import run_models
+from exploratory_analysis import exploratory_analysis
+#---------------------#
+# Report
+import matplotlib.pyplot as plt
+import seaborn as sns
+import os
+import webbrowser
 
 
 class DataPipeline:
@@ -27,10 +34,12 @@ class DataPipeline:
 
         if self.database == None:
             raise ValueError("data has not been generated yet.")
-        data = pd.DataFrame(self.database)
-        self.analysis_results_summary = data.describe(include = 'all')
-        self.analysis_results_head = data.head()
-        print("Exploratory Analysis completed.")
+        self.analysis_results = exploratory_analysis(data = self.database)
+        self.analysis_results.exploratory_analysis()
+        self.analysis_results.analysis_histogram()
+        self.analysis_results.corelation_matrix()
+        
+        print("DataPipeline Exploratory Analysis completed.")
         
     def model_run(self):
         if self.database == None:
@@ -42,15 +51,43 @@ class DataPipeline:
     def generate_report(self):
         """Creates a report with the results."""
         filename = "Report Results"
-        with open(filename, "w") as f:
-            f.write("Results Report\n")
-            f.write("\nExploratory Analysis:\n")
-            f.write(self.analysis_results_summary.to_string())
-            f.write("\n")
-            f.write(self.analysis_results_head.to_string())
-            f.write("\n\nModel Results:\n")
-            f.write("Not done yet.\n")
-            #f.write(self.model_results.to_string())
+        today = date.today()
+        author = "Marina Rodrigues de Oliveira"
+        
+        page_title_text='Results Report Python Project'
+        author_name = 'Author: ' + author
+        title_text = ''
+        text = 'Hello, welcome an analysis about some data!'
+        prices_text = 'Historical prices of S&P 500'
+        stats_text = 'Historical prices summary statistics'
+
+
+        # 2. Combine them together using a long f-string
+        html = f'''
+            <html>
+                <head>
+                    <title>{page_title_text}</title>
+                </head>
+                <body>
+                    <h1>{title_text}</h1>
+                    <p>{author_name}</p>
+                    <p>{today}</p>
+                    <p>{text}</p>
+                    <img src='hist.png' width="700">
+                    <h2>{prices_text}</h2>
+                    <h2>{stats_text}</h2>
+                </body>
+            </html>
+            '''
+        # 3. Write the html string as an HTML file
+        with open('html_report.html', 'w') as f:
+            f.write(html)
+            
+        if os.path.exists('html_report.html'):
+            print("File successfully created!")
+        else:
+            print("File was not created.")
+        
         print(f"Report generated at {filename}")
     
     # Main function to execute the pipeline
