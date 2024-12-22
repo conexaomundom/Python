@@ -2,6 +2,7 @@ import pandas as pd
 #from faker import Faker
 import random
 from DataSet import Data
+from model import run_models
 
 
 class DataPipeline:
@@ -34,8 +35,9 @@ class DataPipeline:
     def model_run(self):
         if self.database == None:
             raise ValueError("data has not been generated yet.")
-        #self.model_results = "Not done yet." #self.database
-        pass
+        self.model_results = run_models(self.database, test_ratio=0.2)    
+        self.model_results.split_train_test()
+        
     
     def generate_report(self):
         """Creates a report with the results."""
